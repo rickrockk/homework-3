@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "outDir": "./build/",
+    "noImplicitAny": true,
+    "module": "es2022",
+    "target": "es5",
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "paths": {
+      "app": ["app/*"],
+      "entities": ["entities/*"],
+      "features": ["features/*"],
+      "helpers": ["helpers/*"],
+      "pages": ["pages/*"],
+      "shared": ["shared/*"],
+      "widgets": ["widgets/*"],
+      "config": ["config/*"],
+      "styles": ["styles/*"],
+      "utils": ["utils/*"]
+    }
+  },
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}
