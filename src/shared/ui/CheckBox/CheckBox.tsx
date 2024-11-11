@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './CheckBox.module.scss';
 import Icon from "../icons/Icon";
+import CheckIcon from "shared/ui/icons/CheckIcon";
 import classNames from "classnames";
 
 export type CheckBoxProps = Omit<
@@ -43,7 +44,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
                 {checked && (
                     <div className={styles.icon__wrapper}>
                         <Icon width={40} height={40}>
-                            <path d="M4 11.6129L9.87755 18L20 7" stroke={ disabled ? '#00000033' : '#518581'} fill="none" strokeWidth="2"/>
+                            <CheckIcon color={disabled ? "secondary" : "accent"} disabled={disabled}/>
                         </Icon>
                     </div>
                 )}

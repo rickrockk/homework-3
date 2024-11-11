@@ -1,12 +1,20 @@
 {
   "compilerOptions": {
     "outDir": "./build/",
-    "noImplicitAny": true,
-    "module": "es2022",
-    "target": "es5",
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "node",
     "jsx": "react-jsx",
     "allowJs": true,
-    "moduleResolution": "node",
+    "strict": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+    "isolatedModules": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "baseUrl": "src",
     "paths": {
       "app": ["app/*"],
@@ -21,9 +29,5 @@
       "utils": ["utils/*"]
     }
   },
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "include": ["src"]
 }

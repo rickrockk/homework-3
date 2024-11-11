@@ -19,7 +19,7 @@ const Button: React.FC<ButtonProps> = ({
                                        }) => {
   const buttonClasses = classNames(styles.button, className, {
     [styles.button_loading]: loading && !disabled,
-    [styles.button_disabled]: disabled || (loading && disabled),
+    [styles.button_disabled]: disabled || loading,
   });
 
   return (

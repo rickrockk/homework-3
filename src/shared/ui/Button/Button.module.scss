@@ -25,13 +25,13 @@
   }
 
   &.button_disabled {
-    background-color: $brand-disabled; // Apply gray background when disabled
+    background-color: $brand-disabled;
     color: $button-primary-text-disabled;
     cursor: default;
   }
 
   &.button_loading {
-    background-color: $brand; // Do not change background on loading
+    background-color: $brand;
     color: $button-primary-text;
     cursor: default;
   }
