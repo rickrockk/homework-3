@@ -1,0 +1,42 @@
+@import 'app/styles/variables';
+
+.button {
+  background-color: $brand;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  border: none;
+  font-size: 18px;
+  font-style: normal;
+  padding: $space-s $space-l;
+  color: $button-primary-text;
+  border-radius: $border-radius;
+
+  &:hover {
+    background-color: $brand-hover;
+    color: $button-primary-text-hover;
+  }
+
+  &:active {
+    background-color: $brand-active;
+    color: $button-primary-text-active;
+  }
+
+  &.button_disabled {
+    background-color: $brand-disabled;
+    color: $button-primary-text-disabled;
+    cursor: default;
+  }
+
+  &.button_loading {
+    background-color: $brand;
+    color: $button-primary-text;
+    cursor: default;
+  }
+}
+
+.loaderWrapper {
+  margin-right: 8px;
+}
