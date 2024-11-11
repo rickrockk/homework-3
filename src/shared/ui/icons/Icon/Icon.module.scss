@@ -1,0 +1,18 @@
+@import 'app/styles/variables';
+
+.icon {
+  &_primary {
+    fill: $text-primary;
+    stroke: $text-primary;
+  }
+
+  &_secondary {
+    fill: $text-secondary;
+    stroke: $text-secondary;
+  }
+
+  &_accent {
+    fill: $text-accent;
+    stroke: $text-accent;
+  }
+}
