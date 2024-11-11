@@ -1,1 +1,0 @@
-export {useScrollToTop} from "./useScrollToTop";
