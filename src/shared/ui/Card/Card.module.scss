@@ -1,0 +1,36 @@
+@import "app/styles/variables";
+
+.card {
+  width: 348px;
+
+  & > img {
+    width: 348px;
+    height: 348px;
+    object-fit: contain;
+    background-color: $card-img-bg;
+  }
+
+  &__caption {
+    padding-top: $space-xs;
+  }
+
+  &__text {
+    background-color: $card-bg;
+    padding: $space-xs $space-xs $space-xl;
+  }
+
+  &__title {
+    padding: $space-xxs 0;
+  }
+
+  &__footer {
+    padding-top: $space-l;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &:hover {
+    box-shadow: 0px 4px 10px 0px #00000040;
+  }
+}
