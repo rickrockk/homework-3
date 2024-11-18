@@ -43,9 +43,12 @@ export const ProductsPage = observer(() => {
     return selectedCategories.map((cat) => cat.value).join(', ');
   }, []);
 
-  const handleSearchInput = useCallback((input: string) => {
-    store.setSearchQuery(input);
-  }, [store]);
+  const handleSearchInput = useCallback(
+    (input: string) => {
+      store.setSearchQuery(input);
+    },
+    [store],
+  );
 
   const handleCategoryChange = useCallback(
     (newSelectedCategories: Option[]) => {

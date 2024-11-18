@@ -1,6 +1,6 @@
 import { makeObservable, observable, action, runInAction } from 'mobx';
 import axios from 'axios';
-import {ILocalStore} from "shared/lib";
+import { ILocalStore } from 'shared/lib';
 import { ENDPOINT } from 'shared/config/api';
 
 export interface Product {
@@ -98,7 +98,6 @@ export class ProductStore implements ILocalStore {
       this.error = null;
       this.errorRelated = null;
       this.currentImage = '';
-    })
+    });
   }
 }
-

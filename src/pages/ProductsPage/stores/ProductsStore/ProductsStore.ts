@@ -158,6 +158,6 @@ export class ProductsStore implements ILocalStore {
       this.error = null;
       this.searchQuery = '';
       this.selectedCategoriesIds = [];
-    })
+    });
   }
 }

@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, { useCallback } from 'react';
 import styles from './ProductPage.module.scss';
 import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
@@ -9,8 +9,8 @@ import Button from 'shared/ui/Button';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { NavigationContainer } from './NavigationContainer';
-import {useLocalStore} from "shared/lib";
-import {ProductStore} from "pages/ProductPage/stores";
+import { useLocalStore } from 'shared/lib';
+import { ProductStore } from 'pages/ProductPage/stores';
 
 export const ProductPage = observer(() => {
   const { id } = useParams();
@@ -22,7 +22,7 @@ export const ProductPage = observer(() => {
       store.resetErrors();
     }
     return () => store.destroy();
-  }, [id]);
+  }, [id, store]);
 
   const handleImageError = () => {
     store.setCurrentImage('/product.jpg');

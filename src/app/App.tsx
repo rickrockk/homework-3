@@ -6,14 +6,14 @@ import { SkeletonTheme } from 'react-loading-skeleton';
 
 function App() {
   return (
-  <SkeletonTheme baseColor="#FFFFFF" highlightColor="#D9D9D9">
-    <div className="app">
+    <SkeletonTheme baseColor="#FFFFFF" highlightColor="#D9D9D9">
+      <div className="app">
         <Header />
         <main className="main">
           <AppRouter />
         </main>
-    </div>
-  </SkeletonTheme>
+      </div>
+    </SkeletonTheme>
   );
 }
 
