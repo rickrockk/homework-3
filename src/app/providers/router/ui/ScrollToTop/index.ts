@@ -1,1 +1,1 @@
-export {useScrollToTop} from "./useScrollToTop";
+export { useScrollToTop } from './useScrollToTop';

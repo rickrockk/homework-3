@@ -1,3 +1,4 @@
+import React from 'react';
 import { GoBack } from './GoBack';
 import styles from './NavigationContainer.module.scss';
 import { ReactNode } from 'react';

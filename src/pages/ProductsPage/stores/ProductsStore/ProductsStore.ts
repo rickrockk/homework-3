@@ -1,138 +1,163 @@
-import {makeObservable, observable, action, runInAction, computed} from 'mobx';
+import { makeObservable, observable, action, runInAction, computed } from 'mobx';
+import { ILocalStore } from 'shared/lib';
 import axios from 'axios';
+import { ENDPOINT } from 'shared/config/api';
+import { Option } from 'shared/ui/MultiDropdown';
 
 export interface Product {
-    id: number;
-    title: string;
-    description: string;
-    price: number;
-    category: {
-        id: number;
-        name: string;
-    };
-    images: string[];
-}
-
-interface Category {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  category: {
     id: number;
     name: string;
+  };
+  images: string[];
 }
 
-class ProductsStore {
-    products: Product[] = [];
-    categories: Category[] = [];
-    selectedCategories: number[] = [];
-    searchQuery: string = "";
-    isLoading: boolean = false;
-    isFetchingMore: boolean = false;
-    hasMore: boolean = true;
-    error: string | null = null;
+export class ProductsStore implements ILocalStore {
+  products: Product[] = [];
+  categories: Option[] = [];
+  selectedCategoriesIds: string[] = [];
+  searchQuery: string = '';
+  isLoading: boolean = true;
+  isFetchingMore: boolean = false;
+  hasMore: boolean = true;
+  error: string | null = null;
 
-    constructor() {
-        makeObservable(this, {
-            products: observable,
-            categories: observable,
-            selectedCategories: observable,
-            searchQuery: observable,
-            isLoading: observable,
-            isFetchingMore: observable,
-            hasMore: observable,
-            error: observable,
-            fetchProducts: action,
-            fetchCategories: action,
-            setSelectedCategories: action,
-            setSearchQuery: action,
-            initializeFromParams: action,
-            filteredProducts: computed,
-        });
+  constructor() {
+    makeObservable(this, {
+      products: observable,
+      categories: observable,
+      selectedCategoriesIds: observable.ref,
+      searchQuery: observable,
+      isLoading: observable,
+      isFetchingMore: observable,
+      hasMore: observable,
+      error: observable,
+      fetchProducts: action,
+      fetchCategories: action,
+      setSelectedCategoriesIds: action,
+      setSearchQuery: action,
+      initializeFromParams: action,
+      categoriesIdsSet: computed,
+      selectedCategories: computed,
+      selectedCategoryNames: computed,
+      selectedCategoryOptions: computed,
+    });
+  }
+
+  initializeFromParams(params: { categoryID?: number[]; searchValue?: string }) {
+    const newCategoryIds = params.categoryID
+      ? Array.isArray(params.categoryID)
+        ? params.categoryID.map(String)
+        : [String(params.categoryID)]
+      : [];
+    const newSearchQuery = params.searchValue || '';
+
+    const shouldFetch =
+      this.selectedCategoriesIds.join(',') !== newCategoryIds.join(',') || this.searchQuery !== newSearchQuery;
+
+    if (shouldFetch) {
+      this.selectedCategoriesIds = newCategoryIds;
+      this.searchQuery = newSearchQuery;
+      this.fetchProducts(10, false);
+    }
+  }
+
+  async fetchProducts(limit: number = 10, append: boolean = false): Promise<void> {
+    if ((append && !this.hasMore) || this.isFetchingMore) return;
+
+    if (append) {
+      this.isFetchingMore = true;
+    } else {
+      this.isLoading = true;
+      if (!append) {
+        this.products = [];
+      }
     }
 
-    initializeFromParams(params: { categoryID?: number[]; searchValue?: string }) {
-        if (params.categoryID) {
-            this.selectedCategories = Array.isArray(params.categoryID)
-                ? params.categoryID.map(Number)
-                : [Number(params.categoryID)];
-        }
-        if (params.searchValue) {
-            this.searchQuery = params.searchValue;
-        }
-    }
+    this.error = null;
+    try {
+      const offset = append ? this.products.length : 0;
+      const categoryFilter = this.selectedCategoriesIds.join(',');
+      const response = await axios.get<Product[]>(`${ENDPOINT.products}`, {
+        params: {
+          limit,
+          offset,
+          categoryId: categoryFilter || undefined,
+          title: this.searchQuery || undefined,
+        },
+      });
 
-    async fetchProducts(limit: number = 10, append: boolean = false): Promise<void> {
-        if ((append && !this.hasMore) || this.isFetchingMore) return;
+      runInAction(() => {
+        if (response.data.length < limit) {
+          this.hasMore = false;
+        }
+        this.products = append ? [...this.products, ...response.data] : response.data;
+      });
+    } catch (error) {
+      runInAction(() => {
+        console.error('Ошибка: ', error);
+        this.error = 'Не удалось загрузить данные';
+      });
+    } finally {
+      runInAction(() => {
         if (append) {
-            this.isFetchingMore = true;
+          this.isFetchingMore = false;
         } else {
-            this.isLoading = true;
+          this.isLoading = false;
         }
-
-        this.error = null;
-        try {
-            const offset = append ? this.products.length : 0;
-            const response = await axios.get<Product[]>(
-                `https://api.escuelajs.co/api/v1/products?limit=${limit}&offset=${offset}`
-            );
-
-            runInAction(() => {
-                if (response.data.length < limit) {
-                    this.hasMore = false;
-                }
-                this.products = append ? [...this.products, ...response.data] : response.data;
-            });
-        } catch (error) {
-            runInAction(() => {
-                console.error('Ошибка: ', error);
-                this.error = 'Не удалось загрузить данные';
-            });
-        } finally {
-            runInAction(() => {
-                if (append) {
-                    this.isFetchingMore = false;
-                } else {
-                    this.isLoading = false;
-                }
-            });
-        }
+      });
     }
+  }
 
-    async fetchCategories(): Promise<void> {
-        try {
-            const response = await axios.get<Category[]>(`https://api.escuelajs.co/api/v1/categories?limit=5`);
-            runInAction(() => {
-                this.categories = response.data;
-            });
-        } catch (error) {
-            console.error('Ошибка при загрузке категорий: ', error);
-        }
+  async fetchCategories(): Promise<void> {
+    try {
+      const response = await axios.get<Option[]>(`${ENDPOINT.categories}`);
+      runInAction(() => {
+        this.categories = response.data;
+      });
+    } catch (error) {
+      console.error('Ошибка при загрузке категорий: ', error);
     }
+  }
 
-    setSelectedCategories(selected: number[]): void {
-        this.selectedCategories = selected;
-    }
+  setSelectedCategoriesIds(selected: string[]): void {
+    this.selectedCategoriesIds = selected;
+    void this.fetchProducts();
+  }
 
-    setSearchQuery(query: string): void {
-        this.searchQuery = query;
-    }
+  setSearchQuery(query: string): void {
+    this.searchQuery = query;
+    void this.fetchProducts();
+  }
 
-    get filteredProducts(): Product[] {
-        let filtered = this.products;
+  get categoriesIdsSet() {
+    return new Set(this.categories.map((cat) => cat.key));
+  }
 
-        if (this.selectedCategories.length > 0) {
-            filtered = filtered.filter(product =>
-                this.selectedCategories.includes(product.category.id)
-            );
-        }
+  get selectedCategories(): Option[] {
+    return this.selectedCategoriesIds
+      .map((id) => this.categories.find((category) => category.key === id))
+      .filter((category): category is Option => Boolean(category));
+  }
 
-        if (this.searchQuery) {
-            filtered = filtered.filter(product =>
-                product.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-                product.description.toLowerCase().includes(this.searchQuery.toLowerCase())
-            );
-        }
+  get selectedCategoryNames() {
+    return this.selectedCategories.map((cat) => cat.value);
+  }
 
-        return filtered.slice().sort((a: Product, b: Product) => a.category.id - b.category.id);
-    }
+  get selectedCategoryOptions() {
+    return this.selectedCategories.map((cat) => ({ key: String(cat.key), value: cat.value }));
+  }
+  destroy(): void {
+    runInAction(() => {
+      this.products = [];
+      this.categories = [];
+      this.error = null;
+      this.searchQuery = '';
+      this.selectedCategoriesIds = [];
+    })
+  }
 }
-
-export const productsStore = new ProductsStore();
-

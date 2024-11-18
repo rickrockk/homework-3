@@ -1,3 +1,4 @@
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useScrollToTop } from './ScrollToTop';
 import { Suspense } from 'react';

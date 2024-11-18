@@ -1,4 +1,4 @@
-@import 'app/styles/variables';
+@import "app/styles/variables";
 
 .input {
   display: none;
@@ -18,18 +18,16 @@
     display: inline-flex;
     align-items: center;
     cursor: pointer;
-
   }
 
   &:hover {
     border-color: $brand;
   }
 
-
   &_disabled {
     border: none;
     cursor: default;
-    background-color: #FFFFFF80;
+    background-color: #ffffff80;
   }
 }
 

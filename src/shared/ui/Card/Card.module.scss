@@ -1,4 +1,4 @@
-@import 'app/styles/variables';
+@import "app/styles/variables";
 
 .card {
   width: 348px;
@@ -16,7 +16,7 @@
 
   &__text {
     background-color: $card-bg;
-    padding: $space-xs $space-xs $space-xl
+    padding: $space-xs $space-xs $space-xl;
   }
 
   &__title {

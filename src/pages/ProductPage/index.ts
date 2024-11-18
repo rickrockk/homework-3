@@ -1,5 +1,3 @@
-import {ProductPage} from "./ui/ProductPage";
+import { ProductPage } from './ui/ProductPage';
 
-export {
-    ProductPage
-}
+export { ProductPage };

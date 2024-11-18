@@ -1,13 +1,18 @@
-import {StrictMode} from 'react'
+import React from 'react';
+import {createRoot} from "react-dom/client";
 import 'shared/config/configureMobX/configureMobX';
-import {BrowserRouter} from "react-router-dom";
-import {createRoot} from 'react-dom/client'
-import App from 'app/App.tsx'
+import 'regenerator-runtime';
+import { BrowserRouter } from 'react-router-dom';
+import App from 'app/App';
 
-createRoot(document.getElementById('root')!).render(
-    <StrictMode>
+const root = createRoot(
+    document.getElementById('root') as HTMLElement
+);
+
+root.render(
+    <React.StrictMode>
         <BrowserRouter>
-            <App/>
+            <App />
         </BrowserRouter>
-    </StrictMode>
-)
+    </React.StrictMode>
+);
