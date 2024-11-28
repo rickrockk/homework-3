@@ -1,47 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Header.module.scss';
-import Text from 'shared/ui/Text';
-// import {useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { MobileMenu } from 'widgets/Header/ui/MobileMenu';
+import { useLocation } from 'react-router-dom';
+import classNames from 'classnames';
+import { Navigation } from 'widgets/Header/ui/Navigation';
 
 export function Header() {
-  // const location = useLocation();
-  // const [currentPath, setCurrentPath] = useState(location.pathname);
-  // useEffect(() => {
-  //     setCurrentPath(location.pathname);
-  // }, [location.pathname]);
-  // const navItemClasses = classNames(styles.nav__item, {
-  //     (currentPath === "/"): "styles.nav__item",
-  // })
+  const location = useLocation();
+  const [currentPath, setCurrentPath] = useState<string>(location.pathname);
+  const [isFolded, setIsFolded] = useState<boolean>(true);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+
+  useEffect(() => {
+    setCurrentPath(location.pathname);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setIsVisible(e.clientY <= 50);
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
+  const headerClass = classNames(styles.header, {
+    [styles.header_hovered]: isVisible,
+  });
+
+  const navItems = [
+    { path: '/', label: 'Products' },
+    { path: '/about', label: 'About us' },
+  ];
 
   return (
-    <header className={styles.header}>
-      <nav className={styles.header__nav}>
-        <Link to="/">
-          <img src="/logo.svg" alt="Логотип" />
-        </Link>
-        <ul className={styles.nav__list}>
-          <li className={`${styles.nav__item} ${styles.nav__item_selected}`}>
-            <Text view="p-18" color="accent" weight="medium">
-              Products
-            </Text>
-          </li>
-          <li className={styles.nav__item}>
-            <Text view="p-18">Categories</Text>
-          </li>
-          <li className={styles.nav__item}>
-            <Text view="p-18">About us</Text>
-          </li>
-        </ul>
-        <ul className={styles.nav__tools}>
-          <li className={styles.nav__tool}>
-            <img src="/bag.svg" alt="Корзина" />
-          </li>
-          <li className={styles.nav__tool}>
-            <img src="/user.svg" alt="Кабинет" />
-          </li>
-        </ul>
-      </nav>
+    <header className={headerClass}>
+      <Navigation navItems={navItems} isFolded={isFolded} setIsFolded={setIsFolded} currentPath={currentPath} />
+      <MobileMenu navItems={navItems} isFolded={isFolded} setIsFolded={setIsFolded} currentPath={currentPath} />
     </header>
   );
 }

@@ -1,0 +1,47 @@
+@import "app/styles/variables";
+@import "app/styles/breakpoints";
+
+.skeletonItem {
+  width: 348px;
+  height: 500px;
+}
+
+.related {
+  &__title {
+    font-size: 32px;
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    margin-top: $space-l;
+
+    @include media-max(md) {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: $space-s;
+    }
+  }
+
+  &__item {
+    width: 348px;
+
+    @include media-max(sm) {
+      flex: 0 0 auto;
+    }
+  }
+}
+
+.productPage {
+  &__related {
+    margin-top: $space-xl;
+
+    @include media-max(sm) {
+      margin-top: $space-l;
+    }
+  }
+}

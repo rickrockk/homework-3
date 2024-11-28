@@ -1,0 +1,18 @@
+@import "app/styles/variables";
+
+.main__cart {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $space-xl;
+  min-height: 100vh;
+}
+
+.cart {
+
+  &__products {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: 1fr;
+    padding-top: $space-l;
+  }
+}

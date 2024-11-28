@@ -11,22 +11,27 @@
   flex: 1;
   padding: $space-m $space-xs;
   font-size: 16px;
-  background-color: $input-bg;
-  border: 1px solid $input-border;
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--text-primary);
+  transition: 0.3s ease;
   border-radius: $border-radius;
   outline: none;
 
   &:focus {
-    border: 1px solid $brand;
+    border: 1px solid var(--brand);
+    transition: 0.3s ease;
   }
 
   &:disabled {
-    color: #00000033;
+    color: var(--input-disabled);
+    transition: 0.3s ease;
     cursor: default;
   }
 
   &::placeholder {
-    color: $input-placeholder;
+    color: var(--input-placeholder);
+    transition: 0.3s ease;
   }
 }
 

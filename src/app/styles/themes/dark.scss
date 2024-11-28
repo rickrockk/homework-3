@@ -1,10 +1,35 @@
-@import "app/styles/variables.scss";
-
 .app.dark {
-  --bg-color: #0e0e75;
-  --inverted-bg-color: #e8e8ea;
-  --primary-color: #049604;
-  --secondary-color: #04ff04;
-  --inverted-primary-color: #041c65;
-  --inverted-secondary-color: #0452ff;
+  --brand: #86aaa7;
+  --brand-hover: #518581;
+  --brand-active: #487773;
+  --brand-disabled: #d9d9d9;
+
+  --button-primary-text-active: #ffffff;
+  --button-primary-text-disabled: #ffffff;
+  --button-primary-text-hover: #ffffff;
+  --button-primary-text: #ffffff;
+
+  --text-primary: #ffffff;
+  --text-secondary: #d9d9d9;
+  --text-accent: #86aaa7;
+
+  --dropdown-options-bg: #000000;
+
+  --card-bg: #121212;
+  --card-img-bg: #3f3f3f;
+  --card-box-shadow: #ffffff40;
+
+  --checkbox-bg: #3f3f3f;
+  --checkbox-border: #d9d9d9;
+  --checkbox-disabled: #00000080;
+
+  --input-bg: #1f1f1f;
+  --input-border: #3f3f3f;
+  --input-placeholder: #868686;
+  --input-disabled: #ffffff33;
+
+  --header-bg: #1f1f1f;
+  --header-down-border: #1c1c1c;
+  --svg-color: #ffffff;
+  --page-bg: #1a1a1a;
 }

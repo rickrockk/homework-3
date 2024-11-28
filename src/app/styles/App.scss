@@ -1,4 +1,6 @@
 @import "variables";
+@import "app/styles/themes/light";
+@import "app/styles/themes/dark";
 @import "Roboto/fonts.css";
 
 html,
@@ -13,7 +15,8 @@ body {
 }
 
 .main {
-  background-color: $page-bg;
+  background-color: var(--page-bg);
+  transition: 0.3s ease;
 }
 
 h1,

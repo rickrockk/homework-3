@@ -1,22 +1,33 @@
-import React from 'react';
+import React, {useLayoutEffect} from 'react';
 import { FC, useMemo, useState } from 'react';
 import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from '../lib/ThemeContext';
 
-const defaultTheme = (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT;
+const getInitialTheme = (): Theme => {
+    const savedTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY);
+    if (savedTheme) {
+        return savedTheme as Theme;
+    }
 
-export const ThemeProvider: FC = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>(defaultTheme);
-  const toggleTheme = () => {
-    setTheme(theme === Theme.DARK ? Theme.LIGHT : Theme.DARK);
-  };
+    const isDarkTheme = window?.matchMedia('(prefers-color-scheme: dark)').matches;
+    return isDarkTheme ? Theme.DARK : Theme.LIGHT;
+};
 
-  const defaultProps = useMemo(
-    () => ({
-      theme: theme,
-      setTheme: setTheme,
-    }),
-    [theme],
-  );
 
-  return <ThemeContext.Provider value={defaultProps}>{children}</ThemeContext.Provider>;
+export const ThemeProvider: FC<React.PropsWithChildren> = ({ children }) => {
+    const [theme, setTheme] = useState<Theme>(getInitialTheme);
+
+    useLayoutEffect(() => {
+        document.documentElement.setAttribute(LOCAL_STORAGE_THEME_KEY, theme);
+        localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme);
+    }, [theme]);
+
+    const defaultProps = useMemo(
+        () => ({
+            theme,
+            setTheme,
+        }),
+        [theme],
+    );
+
+    return <ThemeContext.Provider value={defaultProps}>{children}</ThemeContext.Provider>;
 };

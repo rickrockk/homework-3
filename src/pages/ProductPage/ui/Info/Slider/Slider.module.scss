@@ -1,0 +1,78 @@
+@import "app/styles/variables";
+@import "app/styles/breakpoints";
+
+.slider {
+  position: relative;
+  flex-shrink: 0;
+  width: 600px;
+  height: 600px;
+
+  @include media-max(xl) {
+    width: 500px;
+    height: 500px;
+  }
+
+  @include media-max(lg) {
+    width: 400px;
+    height: 400px;
+  }
+
+  @include media-max(md) {
+    width: 100%;
+    height: auto;
+  }
+
+  .productPage__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    @include media-max(md) {
+      object-fit: contain;
+    }
+  }
+
+  &__button {
+    position: absolute;
+    transition: 0.2s;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+
+    @include media-max(md) {
+      width: 48px;
+      height: 48px;
+    }
+
+    &:hover {
+      background-color: black;
+    }
+
+    &:first-of-type {
+      left: 20px;
+
+      @include media-max(md) {
+        left: 10px;
+      }
+    }
+
+    &:last-of-type {
+      right: 20px;
+
+      @include media-max(md) {
+        right: 10px;
+      }
+    }
+  }
+}

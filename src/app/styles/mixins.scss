@@ -1,0 +1,8 @@
+@import "app/styles/variables";
+
+@mixin gridContainer($cols: 3, $gap: 60px) {
+  margin-top: $space-l;
+  display: grid;
+  grid-template-columns: repeat($cols, 1fr);
+  gap: $gap;
+}

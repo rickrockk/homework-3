@@ -1,0 +1,15 @@
+@import "app/styles/variables.scss";
+
+.main__notFound {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100vh;
+}
+
+.notFound__container {
+  padding-top: $space-xl;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}

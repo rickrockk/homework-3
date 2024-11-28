@@ -1,0 +1,44 @@
+@import "app/styles/variables";
+@import "app/styles/breakpoints";
+
+.products__hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding-bottom: 48px;
+}
+
+.hero__text {
+  display: flex;
+  margin-top: 190px;
+  flex-direction: column;
+  width: 653px;
+  height: 128px;
+  gap: $space-m;
+
+  @include media-max(xl) {
+    width: 553px;
+  }
+
+  @include media-max(lg) {
+    width: 453px;
+    margin-top: 150px;
+  }
+
+  @include media-max(md) {
+    width: 353px;
+    margin-top: 100px;
+  }
+
+  @include media-max(sm) {
+    width: 90%;
+    margin-top: 80px;
+  }
+}
+
+.text__desc {
+  font-size: inherit;
+  line-height: inherit;
+}
