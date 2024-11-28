@@ -1,15 +1,22 @@
 @import "app/styles/variables";
 
-.goBack__link {
-  display: inline-block;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  margin-top: $space-xl;
-}
+.goBack {
+  &__link {
+    display: inline-block;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-top: $space-xl;
+  }
 
-.goBack__container {
-  display: flex;
-  align-items: center;
-  gap: $space-xs;
+  &__container {
+    display: flex;
+    align-items: center;
+    gap: $space-xs;
+  }
+
+  &__arrow {
+    stroke: var(--svg-color);
+    transition: 0.3s;
+  }
 }

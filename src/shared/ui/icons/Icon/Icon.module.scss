@@ -2,17 +2,17 @@
 
 .icon {
   &_primary {
-    fill: $text-primary;
-    stroke: $text-primary;
+    fill: var(--text-primary);
+    stroke: var(--text-primary);
   }
 
   &_secondary {
-    fill: $text-secondary;
-    stroke: $text-secondary;
+    fill: var(--text-secondary);
+    stroke: var(--text-secondary);
   }
 
   &_accent {
-    fill: $text-accent;
-    stroke: $text-accent;
+    fill: var(--text-accent);
+    stroke: var(--text-accent);
   }
 }

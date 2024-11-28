@@ -1,0 +1,26 @@
+@import 'app/styles/variables';
+
+.cart {
+  &__block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: $space-xxs;
+    border-radius: 15px;
+
+    &_fullWidth {
+      border: 1px solid var(--svg-color);
+      align-items: center;
+      padding: $space-xl $space-m;
+      grid-column: 1 / -1;
+    }
+  }
+
+  &__btn {
+    margin-top: $space-m;
+  }
+}
+
+.empty__text {
+  text-align: center;
+}

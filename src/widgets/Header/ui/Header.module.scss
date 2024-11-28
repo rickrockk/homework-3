@@ -1,40 +1,16 @@
 @import "app/styles/variables";
+@import "app/styles/breakpoints";
 
 .header {
-  border-bottom: 2px solid #f3f3f3;
+  position: sticky;
+  top: -100px;
+  background-color: var(--header-bg);
+  border-bottom: 2px solid var(--header-down-border);
+  transition: 0.25s ease;
+  padding: 0 $space-xl;
+  z-index: 100;
 
-  &__nav {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: $space-xl 0;
-  }
-}
-
-.nav {
-  &__list {
-    display: flex;
-    list-style: none;
-    gap: $space-l;
-  }
-
-  &__item {
-    &:not(:first-of-type) {
-      margin-left: $space-xl;
-    }
-
-    &_selected {
-      border-bottom: 3px solid $brand;
-      margin-bottom: -36px;
-    }
-  }
-
-  &__tools {
-    display: flex;
-    list-style: none;
-    gap: $space-l;
-  }
-
-  &__tool {
+  &_hovered {
+    top: 0;
   }
 }

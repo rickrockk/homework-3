@@ -1,0 +1,118 @@
+@import "app/styles/variables";
+@import "app/styles/breakpoints";
+
+.skeletonItem {
+  &__img {
+    width: 600px;
+    height: 600px;
+
+    @include media-max(xl) {
+      width: 500px;
+      height: 500px;
+    }
+
+    @include media-max(lg) {
+      width: 500px;
+      height: 500px;
+    }
+
+    @include media-max(md) {
+      width: 360px;
+      height: 360px;
+    }
+  }
+
+  &__title {
+    width: 300px;
+    height: 80px;
+  }
+
+  &__price {
+    width: 100px;
+    height: 50px;
+  }
+}
+
+.productPage {
+  &__img {
+    width: 600px;
+    height: 600px;
+
+    @include media-max(xl) {
+      width: 500px;
+      height: 500px;
+    }
+
+    @include media-max(lg) {
+      width: 400px;
+      height: 400px;
+    }
+
+    @include media-max(md) {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__info {
+    display: flex;
+    margin-top: $space-xl;
+    gap: $space-xl;
+
+    @include media-max(lg) {
+      gap: $space-l;
+    }
+
+    @include media-max(md) {
+      flex-direction: column;
+      margin-top: $space-l;
+    }
+  }
+
+  &__related {
+    margin-top: $space-xl;
+
+    @include media-max(md) {
+      margin-top: $space-l;
+    }
+  }
+}
+
+.info {
+  &__textBlock {
+    display: flex;
+    flex-direction: column;
+    gap: $space-xl;
+
+    @include media-max(lg) {
+      gap: $space-xxs;
+    }
+
+    @include media-max(md) {
+      gap: $space-l;
+    }
+
+    @include media-max(sm) {
+      gap: $space-m;
+    }
+  }
+
+  &__title {
+    @include media-max(lg) {
+      font-size: 28px;
+      line-height: 36px;
+    }
+  }
+
+  &__description {
+    @include media-max(lg) {
+      font-size: 16px;
+    }
+  }
+
+  &__price {
+    @include media-max(lg) {
+      font-size: 28px;
+    }
+  }
+}

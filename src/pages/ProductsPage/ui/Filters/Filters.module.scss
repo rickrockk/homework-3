@@ -1,0 +1,18 @@
+@import "app/styles/variables";
+@import "app/styles/breakpoints";
+
+.catalog {
+  &__tools {
+    display: flex;
+    flex-direction: column;
+    gap: $space-m;
+  }
+
+  &__filter {
+    width: 300px;
+
+    @include media-max(xs) {
+      width: 250px;
+    }
+  }
+}

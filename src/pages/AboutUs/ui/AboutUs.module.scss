@@ -1,0 +1,73 @@
+@import "app/styles/variables";
+@import "app/styles/breakpoints";
+
+.main__aboutUs {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $space-m;
+  min-height: 100vh;
+}
+
+.aboutUs__hero {
+  display: flex;
+  flex-direction: row;
+  padding: $space-xl 0;
+  gap: 40px;
+  @include media-max(md) {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+.text__additional {
+  margin-top: $space-xl;
+  @include media-max(sm) {
+    margin-top: 2rem;
+  }
+}
+
+.hero__img {
+  width: 100%;
+  max-width: 400px;
+  object-fit: cover;
+  @include media-min(sm) {
+    max-width: 250px;
+  }
+  @include media-min(md) {
+    max-width: 350px;
+  }
+}
+
+.socials {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  margin-top: $space-xl;
+  @include media-max(sm) {
+    gap: 35px;
+  }
+
+  &__item {
+    color: var(--text-primary);
+    transition: 0.3s ease;
+  }
+}
+
+.social__link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 16px;
+  @include media-max(sm) {
+    font-size: 14px;
+  }
+}
+
+.logo {
+  width: 20px;
+  height: 20px;
+  @include media-max(sm) {
+    width: 16px;
+    height: 16px;
+  }
+}

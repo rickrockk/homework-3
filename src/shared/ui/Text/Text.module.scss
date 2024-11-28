@@ -1,4 +1,5 @@
 @import "app/styles/variables";
+@import "app/styles/breakpoints";
 
 * {
   font-family: "Roboto", sans-serif;
@@ -10,31 +11,91 @@
     font-size: 44px;
     font-weight: 700;
     line-height: 48px;
+
+    @include media-max(md) {
+      font-size: 36px;
+      line-height: 40px;
+    }
+
+    @include media-max(sm) {
+      font-size: 28px;
+      line-height: 32px;
+    }
   }
 
   &-button {
     font-size: 18px;
     line-height: 18px;
+
+    @include media-max(md) {
+      font-size: 16px;
+      line-height: 16px;
+    }
+
+    @include media-max(sm) {
+      font-size: 14px;
+      line-height: 14px;
+    }
   }
 
   &-p-20 {
     font-size: 20px;
     line-height: 24px;
+
+    @include media-max(md) {
+      font-size: 18px;
+      line-height: 22px;
+    }
+
+    @include media-max(sm) {
+      font-size: 16px;
+      line-height: 20px;
+    }
   }
 
   &-p-18 {
     font-size: 18px;
     line-height: 22px;
+
+    @include media-max(md) {
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    @include media-max(sm) {
+      font-size: 14px;
+      line-height: 18px;
+    }
   }
 
   &-p-16 {
     font-size: 16px;
     line-height: 20px;
+
+    @include media-max(md) {
+      font-size: 14px;
+      line-height: 18px;
+    }
+
+    @include media-max(sm) {
+      font-size: 12px;
+      line-height: 16px;
+    }
   }
 
   &-p-14 {
     font-size: 14px;
     line-height: 18px;
+
+    @include media-max(md) {
+      font-size: 12px;
+      line-height: 16px;
+    }
+
+    @include media-max(sm) {
+      font-size: 10px;
+      line-height: 14px;
+    }
   }
 
   &-normal {
@@ -50,15 +111,18 @@
   }
 
   &-color-primary {
-    color: $text-primary;
+    color: var(--text-primary);
+    transition: all 0.25s ease;
   }
 
   &-color-secondary {
-    color: $text-secondary;
+    color: var(--text-secondary);
+    transition: 0.25s ease;
   }
 
   &-color-accent {
-    color: $text-accent;
+    color: var(--text-accent);
+    transition: 0.25s ease;
   }
 }
 

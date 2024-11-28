@@ -8,8 +8,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: $checkbox-bg;
-  border: 1px solid $checkbox-border;
+  background-color: var(--checkbox-bg);
+  border: 1px solid var(--checkbox-border);
   padding: 0;
   width: 40px;
   height: 40px;
@@ -27,7 +27,7 @@
   &_disabled {
     border: none;
     cursor: default;
-    background-color: #ffffff80;
+    background-color: var(--checkbox-disabled);
   }
 }
 

@@ -13,8 +13,6 @@ export const useInfiniteScroll = ({ callback, hasMore, isFetching }: UseInfinite
   useEffect(() => {
     if (!hasMore || isFetching) return;
 
-    if (observerRef.current) observerRef.current.disconnect();
-
     observerRef.current = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {

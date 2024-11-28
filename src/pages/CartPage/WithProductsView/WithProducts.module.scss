@@ -1,0 +1,28 @@
+@import 'app/styles/variables';
+
+.cart {
+  &__block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: $space-xxs;
+    border-radius: 15px;
+  }
+
+  &__btn {
+    margin-top: $space-m;
+  }
+
+  &__price {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 25px;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: $space-m;
+  }
+}

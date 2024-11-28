@@ -1,9 +1,9 @@
 import { useEffect, useMemo } from 'react';
-import qs from 'qs';
+import qs, {ParsedQs} from 'qs';
 
 export interface IStore {
-  initializeFromParams: (params: Record<string, any>) => void;
-  selectedCategoriesIds: string[];
+  initializeFromParams: (params: ParsedQs) => void;
+  selectedCategoryId: string;
   searchQuery: string;
 }
 
@@ -26,7 +26,7 @@ export const useQueryParse = ({ store, navigate, arrayFormat = 'comma' }: UseQue
   const queryString = useMemo(() => {
     return qs.stringify(
       {
-        categoryID: store.selectedCategoriesIds,
+        categoryID: store.selectedCategoryId || undefined,
         searchValue: store.searchQuery || undefined,
       },
       {
@@ -34,7 +34,7 @@ export const useQueryParse = ({ store, navigate, arrayFormat = 'comma' }: UseQue
         encode: false,
       },
     );
-  }, [store.selectedCategoriesIds, store.searchQuery, arrayFormat]);
+  }, [store.selectedCategoryId, store.searchQuery, arrayFormat]);
 
   useEffect(() => {
     navigate(`?${queryString}`);

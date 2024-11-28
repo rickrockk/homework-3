@@ -36,6 +36,7 @@ export class ProductStore implements ILocalStore {
       fetchProduct: action,
       fetchRelatedProducts: action,
       setCurrentImage: action,
+      setImagePlaceholder: action,
       resetErrors: action,
     });
   }
@@ -83,6 +84,10 @@ export class ProductStore implements ILocalStore {
   setCurrentImage(image: string) {
     this.currentImage = image;
   }
+
+  public setImagePlaceholder = () => {
+    this.setCurrentImage('/product.jpg');
+  };
 
   resetErrors() {
     this.error = null;

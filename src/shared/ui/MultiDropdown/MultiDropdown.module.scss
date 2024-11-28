@@ -1,4 +1,4 @@
-@import "../../../app/styles/variables";
+@import "app/styles/variables";
 
 .dropdown {
   display: inline-block;
@@ -6,7 +6,7 @@
 
   &__options {
     position: absolute;
-    background-color: white;
+    background-color: var(--dropdown-options-bg);
     box-shadow: 0px 4px 10px 0px #00000040;
     width: 364px;
     max-height: 200px;
@@ -16,15 +16,16 @@
   }
 
   &__option {
+    color: var(--text-primary);
     padding: $space-s $space-xs;
     cursor: pointer;
 
     &:hover {
-      color: $text-secondary;
+      color: var(--text-secondary);
     }
 
     &_selected {
-      color: $brand;
+      color: var(--brand);
     }
   }
 }

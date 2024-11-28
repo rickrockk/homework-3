@@ -19,7 +19,7 @@ export type TextProps = {
   maxLines?: number;
 };
 
-const Text: React.FC<TextProps> = ({ className, view, tag = 'p', weight, children, color, maxLines }) => {
+const Text: React.FC<TextProps> = ({ className, view, tag = 'p', weight, children, color = 'primary', maxLines }) => {
   const Tag = tag as keyof JSX.IntrinsicElements;
   const textClass = classNames(
     className,

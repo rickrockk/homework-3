@@ -1,0 +1,60 @@
+@import "app/styles/variables";
+@import "app/styles/breakpoints";
+
+.header__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $space-xl 0;
+
+  @include media-min(lg) {
+    justify-content: space-around;
+  }
+}
+
+.nav {
+  &__list {
+    display: flex;
+    position: relative;
+    list-style: none;
+    gap: $space-l;
+    transition:
+      height 0.3s ease,
+      opacity 0.3s ease;
+    align-items: center;
+
+    @include media-max(md) {
+      display: none;
+    }
+  }
+
+  &__item {
+    position: relative;
+
+    &_selected {
+      color: var(--brand);
+    }
+  }
+
+  &__underline {
+    position: absolute;
+    bottom: -32px;
+    height: 3px;
+    background-color: var(--brand);
+    transition: all 0.22s ease;
+
+    @include media-max(md) {
+      display: none;
+    }
+  }
+
+  &__tools {
+    display: flex;
+    list-style: none;
+    gap: $space-l;
+
+    @include media-max(md) {
+      display: none;
+    }
+  }
+}
